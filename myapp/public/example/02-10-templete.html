@@ -24,6 +24,11 @@
             color: yellow;
             background-color: purple;
         }
+        
+        .divider {
+            height: 2px;
+            background-color: gray;
+        }
     </style>
 </head>
 
@@ -32,6 +37,7 @@
         <table id="list">
             <thead>
                 <tr>
+                    <th>index</th>
                     <th>번호</th>
                     <th>이름</th>
                     <th>전화번호</th>
@@ -39,13 +45,18 @@
                 </tr>
             </thead>
             <tbody id="contacts">
-                <tr v-for="contact in contacts">
-                    <td>{{contact.no}}</td>
-                    <td>{{contact.name}}</td>
-                    <td>{{contact.tel}}</td>
-                    <td>{{contact.address}}</td>
-                </tr>
-
+                <template v-for="(contact, index) in contacts">
+                    <tr :key="contact.no">
+                        <td>{{index + 1}}</td>
+                        <td>{{contact.no}}</td>
+                        <td>{{contact.name}}</td>
+                        <td>{{contact.tel}}</td>
+                        <td>{{contact.address}}</td>
+                    </tr>
+                    <tr class="divider" v-if="index % 5===4">
+                        <td colspan="5"></td>
+                    </tr>
+                </template>
             </tbody>
         </table>
     </div>
@@ -114,4 +125,4 @@
     </script>
 </body>
 
-</html>
+</html>xx
